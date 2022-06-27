@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form id="myform" action="http://172.30.20.45:3001/api/setTimer" method="post">
+        <input type="text" id="tim" name="timer">
+        <!-- <input type="submit" name="submit" id="submit"> -->
+    </form>
+    <button onclick="submita()">submit</button>
+
+    <script>
+        function submita() {
+            let a = isNaN(document.getElementById('tim').value)
+            console.log(a)
+            if (a == false && document.getElementById('tim').value != '') {
+                document.forms["myform"].submit()
+                return
+            }
+        }
+    </script>
+</body>
+
+</html>
