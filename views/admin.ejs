@@ -1,28 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fa">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Snapp Express!</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
 </head>
 
-<body>
-    <form id="myform" action="http://172.30.20.45:3001/api/setTimer" method="post">
-        <input type="text" id="tim" name="timer">
-        <!-- <input type="submit" name="submit" id="submit"> -->
-    </form>
-    <button onclick="submita()">submit</button>
-
+<body class="body" style="font-size: 290%;">
+    <div class="d-flex justify-content-md-center align-items-center vh-100">
+        <div>
+            <img src="./img/logo.png" style="margin-left:25%;" width="30%" alt="">
+            <div class="container">
+                <div class="row" style="padding: 10px;">
+                    <div onclick="up('hour')" class="col">
+                        <i class="fa-duotone fa-angle-up"></i>
+                    </div>
+                    <div onclick="up('min')" class="col">
+                        <i class="fa-duotone fa-angle-up"></i>
+                    </div>
+                    <div onclick="up('sec')" class="col">
+                        <i class="fa-duotone fa-angle-up"></i>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span id="hour">00</span>
+                    </div>
+                    <div class="col">
+                        <span id="min">00</span>
+                    </div>
+                    <div class="col">
+                        <span id="sec">00</span>
+                    </div>
+                </div>
+                <div class="row" style="padding: 10px;">
+                    <div onclick="down('hour')" class="col">
+                        <i class="fa-duotone fa-angle-down"></i>
+                    </div>
+                    <div onclick="down('min')" class="col">
+                        <i class="fa-duotone fa-angle-down"></i>
+                    </div>
+                    <div onclick="down('sec')" class="col">
+                        <i class="fa-duotone fa-angle-down"></i>
+                    </div>
+                </div>
+            </div>
+            <form id="myform" style="display: none;" action="http://172.30.20.45:3001/api/setTimer" method="post">
+                <input type="text" id="tim" name="timer" required>
+            </form>
+            <!-- <button onclick="submita()">submit</button> -->
+            <button type="button" onclick="submita()" class="btn btn-warning" style="width: 100%">Sync</button>
+        </div>
+    </div>
+    <script src="./js/fontawesom.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
     <script>
         function submita() {
-            let a = isNaN(document.getElementById('tim').value)
-            console.log(a)
-            if (a == false && document.getElementById('tim').value != '') {
+            let time = 0;
+            let hour = parseInt(document.getElementById("hour").innerHTML);
+            let min = parseInt(document.getElementById("min").innerHTML);
+            let sec = parseInt(document.getElementById("sec").innerHTML);
+            time = sec + (min * 60) + (hour * (60 * 60))
+            document.getElementById('tim').value = time / 60
+            if (document.getElementById('tim').value != '') {
+                console.log(12)
                 document.forms["myform"].submit()
                 return
             }
+        }
+
+        function up(id) {
+            let div = document.getElementById(id)
+            switch (id) {
+                case "hour":
+                    if (div.innerHTML == 23) {
+                        div.innerHTML = `00`
+                    } else {
+                        let t = parseInt(div.innerHTML) + 1
+                        t >= 0 && t <= 9 ? div.innerHTML = `0${t}` : div.innerHTML = `${t}`
+                    }
+                    break;
+                case "min":
+                    if (div.innerHTML == 59) {
+                        div.innerHTML = `00`
+                    } else {
+                        let t = parseInt(div.innerHTML) + 1
+                        t >= 0 && t <= 9 ? div.innerHTML = `0${t}` : div.innerHTML = `${t}`
+                    }
+                    break;
+                case "sec":
+                    if (div.innerHTML == 59) {
+                        div.innerHTML = `00`
+                    } else {
+                        let t = parseInt(div.innerHTML) + 1
+                        t >= 0 && t <= 9 ? div.innerHTML = `0${t}` : div.innerHTML = `${t}`
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+        function down(id) {
+            let div = document.getElementById(id)
+            switch (id) {
+                case "hour":
+                    if (div.innerHTML == 00) {
+                        div.innerHTML = 23
+                    } else {
+                        let t = parseInt(div.innerHTML) - 1
+                        t >= 0 && t <= 9 ? div.innerHTML = `0${t}` : div.innerHTML = `${t}`
+                    }
+                    break;
+                case "min":
+                    if (div.innerHTML == 00) {
+                        div.innerHTML = 59
+                    } else {
+                        let t = parseInt(div.innerHTML) - 1
+                        t >= 0 && t <= 9 ? div.innerHTML = `0${t}` : div.innerHTML = `${t}`
+                    }
+                    break;
+                case "sec":
+                    if (div.innerHTML == 00) {
+                        div.innerHTML = 59
+                    } else {
+                        let t = parseInt(div.innerHTML) - 1
+                        t >= 0 && t <= 9 ? div.innerHTML = `0${t}` : div.innerHTML = `${t}`
+                    }
+                    break;
+                default:
+                    break;
+            }
+
         }
     </script>
 </body>
