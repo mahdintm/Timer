@@ -7,7 +7,7 @@ import { Errorpage } from './router/Error.js';
 import cookieParser from 'cookie-parser';
 import { Server } from 'socket.io';
 var app = express();
-let app_HTTP = http.createServer(app).listen(3001);
+let app_HTTP = http.createServer(app).listen(3041);
 export let io = new Server(app_HTTP)
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: false }));

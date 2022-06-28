@@ -16,8 +16,62 @@
             <div><span id="time" class="Time">00:00</span></div>
         </div>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./js/index.js"></script>
+    <script src="./socket.io/socket.io.js"></script>
+
+    <script>
+        let socket = io();
+        socket.on("reload", () => {
+            location.reload();
+        })
+
+        socket.on("Timer", (time) => {
+            var myAudio = new Audio('http://172.30.20.445:3001/media/notif.mp3');
+            myAudio.play();
+            startTimer(time)
+
+        })
+
+        let interval;
+
+        function startTimer(time) {
+            if (interval) {
+                clearInterval(interval)
+            }
+            let yedarsad = ((time * 60) / 100) * 10
+            let timeinsec = time * 60
+            interval = setInterval(async() => {
+                seconds = parseInt(timeinsec % 60, 10);
+                minutes = parseInt(((timeinsec - seconds) / 60) % 60, 10);
+                hour = parseInt(((timeinsec - minutes) / 3600), 10);
+                hour = minutes < 10 ? "0" + hour : hour;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                if (hour != 0) {
+                    document.querySelector('#time').textContent = `${hour}:${minutes}:${seconds}`;
+                } else {
+                    document.querySelector('#time').textContent = minutes + ":" + seconds;
+                }
+                if (timeinsec < yedarsad) {
+                    var myAudio = new Audio('./media/notif.mp3');
+                    myAudio.play();
+                    document.body.style.backgroundColor == "red" ? document.body.style.backgroundColor = "#222" : document.body.style.backgroundColor = "red"
+                } else {
+                    document.body.style.backgroundColor = "#222"
+                }
+
+                if (timeinsec < 30) {
+                    var myAudio = new Audio('./media/notif.mp3');
+                    myAudio.play();
+                }
+                if (timeinsec != 0) {
+                    timeinsec--
+                } else {
+                    document.body.style.backgroundColor = "#222"
+                    clearInterval(interval)
+                }
+            }, 1000);
+        }
+    </script>
     <script src="./js/bootstrap.min.js"></script>
 </body>
 
