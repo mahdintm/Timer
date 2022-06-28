@@ -25,7 +25,7 @@
         })
 
         socket.on("Timer", (time) => {
-            var myAudio = new Audio('http://172.30.20.445:3001/media/notif.mp3');
+            var myAudio = new Audio('http://timer.lan/media/notif.mp3');
             myAudio.play();
             startTimer(time)
 
