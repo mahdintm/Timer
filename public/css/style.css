@@ -16,6 +16,10 @@
     user-select: none;
     /* Non-prefixed version, currently
                                     supported by Chrome, Edge, Opera and Firefox */
-    background-color: black;
+    background-color: #222;
     color: white;
+}
+
+.centerAlign {
+    text-align: center;
 }

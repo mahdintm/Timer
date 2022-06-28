@@ -11,6 +11,21 @@
     },
     "type": "module",
     "scripts": {
-        "start": "nodemon server.js"
-    }
+        "start": "nodemon app.js"
+    },
+    "name": "timer",
+    "version": "1.0.0",
+    "main": "app.js",
+    "devDependencies": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/mahdintm/Timer.git"
+    },
+    "author": "Mahdi Nemati",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/mahdintm/Timer/issues"
+    },
+    "homepage": "https://github.com/mahdintm/Timer#readme",
+    "description": ""
 }

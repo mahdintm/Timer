@@ -5,7 +5,6 @@ import path from 'path';
 import bodyParser from 'body-parser';
 import { Errorpage } from './router/Error.js';
 import cookieParser from 'cookie-parser';
-// import session from 'express-session'
 import { Server } from 'socket.io';
 var app = express();
 let app_HTTP = http.createServer(app).listen(3001);
