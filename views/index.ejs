@@ -51,7 +51,7 @@
                 } else {
                     document.querySelector('#time').textContent = minutes + ":" + seconds;
                 }
-                if (timeinsec < yedarsad) {
+                if (timeinsec < 10) {
                     var myAudio = new Audio('./media/notif.mp3');
                     myAudio.play();
                     document.body.style.backgroundColor == "red" ? document.body.style.backgroundColor = "#222" : document.body.style.backgroundColor = "red"
@@ -62,7 +62,7 @@
                 if (timeinsec == 30) {
                     var myAudio = new Audio('./media/notif.mp3');
                     myAudio.play();
-                } else if (timeinsec == 30) {
+                } else if (timeinsec == 02) {
                     setInterval(() => {
                         var myAudio = new Audio('./media/notif.mp3');
                         myAudio.play();
