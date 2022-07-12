@@ -26,9 +26,6 @@ router.get("/notfound", (req, res) => {
 });
 
 router.post('/api/setTimer', (req, res) => {
-
-    console.log("slm", req.body)
-        // sso.emit(req.bodyTimer, 2)
     io.emit('Timer', req.body.timer)
     res.redirect('/admin')
 })

@@ -59,9 +59,14 @@
                     document.body.style.backgroundColor = "#222"
                 }
 
-                if (timeinsec < 30) {
+                if (timeinsec == 30) {
                     var myAudio = new Audio('./media/notif.mp3');
                     myAudio.play();
+                } else if (timeinsec == 30) {
+                    setInterval(() => {
+                        var myAudio = new Audio('./media/notif.mp3');
+                        myAudio.play();
+                    }, 500);
                 }
                 if (timeinsec != 0) {
                     timeinsec--
