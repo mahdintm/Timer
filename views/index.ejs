@@ -61,7 +61,7 @@
                     var myAudio = new Audio('./media/notif.mp3');
                     myAudio.play();
                 } else if (timeinsec == 02) {
-                    setInterval(() => {
+                    let intpaly = setInterval(() => {
                         var myAudio = new Audio('./media/notif.mp3');
                         myAudio.play();
                     }, 500);
@@ -70,6 +70,7 @@
                     timeinsec--
                 } else {
                     document.body.style.backgroundColor = "#222"
+                    clearInterval(intpaly);
                     clearInterval(interval)
                 }
             }, 1000);
