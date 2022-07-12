@@ -32,6 +32,7 @@
         })
 
         let interval;
+        let intpaly
 
         function startTimer(time) {
             if (interval) {
@@ -61,7 +62,7 @@
                     var myAudio = new Audio('./media/notif.mp3');
                     myAudio.play();
                 } else if (timeinsec == 02) {
-                    let intpaly = setInterval(() => {
+                    intpaly = setInterval(() => {
                         var myAudio = new Audio('./media/notif.mp3');
                         myAudio.play();
                     }, 500);
