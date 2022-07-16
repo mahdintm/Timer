@@ -21,7 +21,6 @@ app.set("views", "views");
 //End of EJS
 
 io.on('connection', (sso) => {
-    console.log(sso.conn.remoteAddress)
     setTimeout(() => {
         if (getCookiefromstring(sso.handshake.headers.cookie, "token_socket") != null) {
             socketusers[getCookiefromstring(sso.handshake.headers.cookie, "token_socket")] = sso.id

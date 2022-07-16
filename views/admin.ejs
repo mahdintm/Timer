@@ -52,10 +52,14 @@
                 </div>
                 <div class="row centerAlign" style="margin-top: 10px;">
                     <button type="button" onclick="submita()" class="btn" style="margin-top: 10px;background-color: #ff9600;width: 80%;margin: auto;">Sync</button>
+                    <button type="button" onclick="submitPause()" class="btn" style="margin-top: 10px;background-color: #ff9600;width: 80%;margin: auto; margin-top: 2%;">Pause/Resume</button>
                 </div>
             </div>
-            <form id="myform" style="display: none;" action="http://172.30.30.36:3041/api/setTimer" method="post">
+            <form id="myform" style="display: none;" action="/api/setTimer" method="post">
                 <input type="text" id="tim" name="timer" required>
+            </form>
+            <form id="pause" style="display: none;" action="/api/pause" method="post">
+                <input type="text" id="pause" name="timer" required>
             </form>
             <!-- <button onclick="submita()">submit</button> -->
         </div>
@@ -76,6 +80,10 @@
                 document.forms["myform"].submit()
                 return
             }
+        }
+
+        function submitPause(params) {
+            document.forms["pause"].submit()
         }
 
         function up(id) {

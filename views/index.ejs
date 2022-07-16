@@ -25,14 +25,21 @@
         })
 
         socket.on("Timer", (time) => {
-            var myAudio = new Audio('http://172.30.30.36:3041/media/notif.mp3');
+            var myAudio = new Audio('/media/notif.mp3');
             myAudio.play();
             startTimer(time)
-
+            isPause = false
         })
+
+        socket.on("pause", pause)
+
+        function pause() {
+            isPause = !isPause
+        }
 
         let interval;
         let intpaly
+        let isPause = false;
 
         function startTimer(time) {
             if (interval) {
@@ -41,6 +48,7 @@
             let yedarsad = ((time * 60) / 100) * 10
             let timeinsec = time * 60
             interval = setInterval(async() => {
+                if (isPause == true) return
                 seconds = parseInt(timeinsec % 60, 10);
                 minutes = parseInt(((timeinsec - seconds) / 60) % 60, 10);
                 hour = parseInt(((timeinsec - minutes) / 3600), 10);
@@ -63,6 +71,7 @@
                     myAudio.play();
                 } else if (timeinsec == 5) {
                     intpaly = setInterval(() => {
+                        if (isPause == true) return
                         var myAudio = new Audio('./media/notif.mp3');
                         myAudio.play();
                     }, 1500);
@@ -72,7 +81,7 @@
                 } else {
                     document.body.style.backgroundColor = "#222"
                     clearInterval(intpaly);
-                    clearInterval(interval)
+                    clearInterval(interval);
                 }
             }, 1000);
         }

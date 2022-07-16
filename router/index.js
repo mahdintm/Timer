@@ -29,3 +29,7 @@ router.post('/api/setTimer', (req, res) => {
     io.emit('Timer', req.body.timer)
     res.redirect('/admin')
 })
+router.post('/api/pause', (req, res) => {
+    io.emit('pause')
+    res.redirect('/admin')
+})
