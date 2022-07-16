@@ -58,14 +58,14 @@
                     document.body.style.backgroundColor = "#222"
                 }
 
-                if (timeinsec == 30) {
+                if (timeinsec == 300) {
                     var myAudio = new Audio('./media/notif.mp3');
                     myAudio.play();
-                } else if (timeinsec == 02) {
+                } else if (timeinsec == 5) {
                     intpaly = setInterval(() => {
                         var myAudio = new Audio('./media/notif.mp3');
                         myAudio.play();
-                    }, 500);
+                    }, 1500);
                 }
                 if (timeinsec != 0) {
                     timeinsec--
