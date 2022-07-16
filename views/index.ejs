@@ -13,7 +13,8 @@
 <body class="body">
     <div class="d-flex justify-content-md-center align-items-center vh-100">
         <div>
-            <div><span id="time" class="Time">00:00</span></div>
+            <img id="qr" src="./img/QR.png" alt="">
+            <div><span style="display:none" id="time" class="Time">00:00</span></div>
         </div>
     </div>
     <script src="./socket.io/socket.io.js"></script>
@@ -42,6 +43,8 @@
         let isPause = false;
 
         function startTimer(time) {
+            document.getElementById('qr').style.display = 'none'
+            document.getElementById('time').style.display = 'block'
             if (interval) {
                 clearInterval(interval)
             }
@@ -56,8 +59,11 @@
                 minutes = minutes < 10 ? "0" + minutes : minutes;
                 seconds = seconds < 10 ? "0" + seconds : seconds;
                 if (hour != 0) {
+                    document.querySelector('#time').style.transition = 'font-size 3s';
+                    document.querySelector('#time').style.fontSize = '1400%';
                     document.querySelector('#time').textContent = `${hour}:${minutes}:${seconds}`;
                 } else {
+                    document.querySelector('#time').style.fontSize = '2000%';
                     document.querySelector('#time').textContent = minutes + ":" + seconds;
                 }
                 if (timeinsec < 10) {
@@ -82,6 +88,10 @@
                     document.body.style.backgroundColor = "#222"
                     clearInterval(intpaly);
                     clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById('qr').style.display = 'block'
+                        document.getElementById('time').style.display = 'none'
+                    }, 10000);
                 }
             }, 1000);
         }
