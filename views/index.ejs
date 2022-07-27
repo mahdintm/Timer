@@ -33,9 +33,18 @@
         })
 
         socket.on("pause", pause)
+        socket.on("reset", reset)
 
         function pause() {
             isPause = !isPause
+        }
+
+        function reset() {
+            document.body.style.backgroundColor = "#222"
+            clearInterval(intpaly);
+            clearInterval(interval);
+            document.getElementById('qr').style.display = 'block'
+            document.getElementById('time').style.display = 'none'
         }
 
         let interval;
@@ -43,6 +52,7 @@
         let isPause = false;
 
         function startTimer(time) {
+            console.log(time)
             document.getElementById('qr').style.display = 'none'
             document.getElementById('time').style.display = 'block'
             if (interval) {
@@ -55,9 +65,9 @@
                 seconds = parseInt(timeinsec % 60, 10);
                 minutes = parseInt(((timeinsec - seconds) / 60) % 60, 10);
                 hour = parseInt(((timeinsec - minutes) / 3600), 10);
-                hour = minutes < 10 ? "0" + hour : hour;
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
+                hour = minutes < 10 && hour >= 0 ? "0" + hour : hour;
+                minutes = minutes < 10 && minutes >= 0 ? "0" + minutes : minutes;
+                seconds = seconds < 10 && seconds >= 0 ? "0" + seconds : seconds;
                 if (hour != 0) {
                     document.querySelector('#time').style.transition = 'font-size 3s';
                     document.querySelector('#time').style.fontSize = '1400%';
@@ -75,24 +85,21 @@
                 if (timeinsec == 300) {
                     var myAudio = new Audio('./media/notif.mp3');
                     myAudio.play();
-                } else if (timeinsec == 5) {
-                    intpaly = setInterval(() => {
-                        if (isPause == true) return
-                        var myAudio = new Audio('./media/notif.mp3');
-                        myAudio.play();
-                    }, 1500);
+                } else if (timeinsec == 5 || timeinsec == 3 || timeinsec == 1) {
+                    var myAudio = new Audio('./media/notif.mp3');
+                    myAudio.play();
                 }
-                if (timeinsec != 0) {
-                    timeinsec--
-                } else {
-                    document.body.style.backgroundColor = "#222"
-                    clearInterval(intpaly);
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        document.getElementById('qr').style.display = 'block'
-                        document.getElementById('time').style.display = 'none'
-                    }, 10000);
-                }
+                // if (timeinsec != 0) {
+                timeinsec--
+                // } else {
+                //     document.body.style.backgroundColor = "#222"
+                //     clearInterval(intpaly);
+                //     clearInterval(interval);
+                //     setTimeout(() => {
+                //         document.getElementById('qr').style.display = 'block'
+                //         document.getElementById('time').style.display = 'none'
+                //     }, 10000);
+                // }
             }, 1000);
         }
     </script>

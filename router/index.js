@@ -33,3 +33,7 @@ router.post('/api/pause', (req, res) => {
     io.emit('pause')
     res.redirect('/admin')
 })
+router.post('/api/reset', (req, res) => {
+    io.emit('reset')
+    res.redirect('/admin')
+})
